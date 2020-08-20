@@ -1,0 +1,22 @@
+<div class="panel shadow mt-3">
+  <div class="header" >
+    <h2 class="title"><i class="fas fa-volleyball-ball"></i> REGISTRO DE SECCIONES</h2>
+  </div>
+  
+  <div class="inside">
+    <form 
+      [formGroup]="formEdit"
+      (submit)="onSubmit()" >
+      <div class="form-group">
+        <label for="inputSeccion" class="col-sm-2 col-form-label">Seccion</label>
+        <input type="text" class="form-control m-3" id="inputSeccion" formControlName="nombre">
+      </div>
+        <button type="submit" class="btn btn-primary mr-2">
+          Registrar
+        </button>
+        <button  class="btn btn-warning mr-2" [routerLink]="['/admin/seccion', this.id]" >Cancelar</button>
+        <button (click)="delete()" class="btn btn-danger" >Eliminar</button>
+    </form> 
+  </div>      
+      
+</div>

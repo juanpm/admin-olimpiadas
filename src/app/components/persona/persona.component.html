@@ -1,0 +1,133 @@
+<div class="panel shadow mt-3" >
+  <div class="header">
+    <h2 class="title"><i class="fas fa-volleyball-ball"></i> REGISTRO PERSONA</h2>
+  </div>
+  <div class="inside">
+    <div class="btn btn-secondary" *ngIf="!crud_operation.is_visible" (click)="new()">Mostrar</div>
+    <form (submit)="crearPersona()"
+      [formGroup]="newPersonaForm"
+      *ngIf="crud_operation.is_visible">
+      <div class="form-group">
+        <label>
+          Codigo
+        </label>
+        <input type="text" 
+          formControlName="codigo"
+          class="form-control">
+      </div>
+      <div class="form-group">
+          <label>
+            Nombre
+          </label>
+          <input type="text" 
+            formControlName="nombrecompleto"
+            class="form-control">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>
+            Dni
+          </label>
+          <input type="text" 
+            formControlName="dni"
+            class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label>
+            Teléfono
+          </label>
+          <input type="text" 
+            formControlName="telefono"
+            class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>
+          Fecha
+        </label>
+        <input type="date" 
+          formControlName="fecha_nacimiento"
+          class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Foto
+        </label>
+        <input type="text" 
+          formControlName="foto"
+          class="form-control">
+      </div>
+
+      <div class="form-group" *ngIf="asignarusuario.is_visible">
+        <label>
+          Usuario
+        </label>
+        <div  *ngIf="usuarioObject.selected">
+        <input type="text"  class="form-control"  
+          value="{{ usuarioObject.text }}" readonly 
+          *ngIf="usuarioObject.selected">
+          
+        <button type="button" 
+          (click)="unselectUsuario()"
+          class="btn btn-info">Cambiar</button>
+        </div>
+          <div class="list-group" *ngIf="!usuarioObject.selected">
+            <div class="list-group-item" 
+              *ngFor="let usuario of usuarios">
+              <button class="btn btn-success" type="button" (click)="selectUsuario(usuario)"
+              >Seleccionar</button>
+              {{ usuario.name }}
+            </div>
+          </div>  
+         
+      </div>
+      <div class="form-group">
+        <button class="button" class="btn btn-info" *ngIf="!asignarusuario.is_visible" (click)="new1()"><i class="fas fa-user-plus"></i></button>
+        <button type="button" class="btn btn-danger" *ngIf="asignarusuario.is_visible" (click)="asignarusuario.is_visible=false">
+          <i class="fas fa-window-close"></i>
+        </button>        
+      </div>
+
+      <button type="submit" class="btn btn-primary mr-2">
+        Registrar
+      </button>
+      <button type="button" class="btn btn-warning" (click)="crud_operation.is_visible=false">
+        Cancelar
+      </button>
+    </form>
+    <div class="loading text-center" *ngIf="loading">
+      <img src="../../assets/loader.gif" width="50px">
+    </div>
+    <table class="table table-bordered table-hover mt-4">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Codigo</th>
+          <th>DNI</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let per of this.lista | paginate: { itemsPerPage: 10, currentPage: pageActual }">
+          <td>
+            {{ per.id }}
+          </td>
+          <td>
+            {{ per.nombrecompleto }}
+          </td>
+          <td>
+            {{ per.codigo }}
+          </td>
+          <td>
+            {{ per.dni }}
+          </td>
+          <td>
+            <a [routerLink]="['/admin/persona', per.id]" class="btn btn-info">Ver</a>
+          </td>     
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="panel shadow mt-3" >
+  <div class="header">
+    <h2 class="title"><i class="fas fa-volleyball-ball"></i> REGISTRO OLIMPIADA</h2>
+  </div>
+  <div class="inside">
+    <div class="btn btn-secondary" *ngIf="!crud_operation.is_visible" (click)="new()">Mostrar</div>
+    <form (submit)="crearOlimpiada()"
+      [formGroup]="newOlimpiadaForm"
+      *ngIf="crud_operation.is_visible">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>
+            Nombre
+          </label>
+          <input type="text" formControlName="nombre" class="form-control">
+        </div>
+        <div class="form-group col-md-8">
+          <label>
+            Descripcion
+          </label>
+          <input type="text" formControlName="descripcion"
+          class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>
+          Fecha de Inicio
+        </label>
+        <input type="date" 
+          formControlName="fecha_inicio"
+          class="form-control">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>
+            Fecha Fin de Inscripcion
+          </label>
+          <input type="date" 
+            formControlName="fecha_fin_inscripcion"
+            class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label>
+            Fecha Fin
+          </label>
+          <input type="date" 
+            formControlName="fecha_fin"
+            class="form-control">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mr-2">
+        Registrar
+      </button>
+      <button type="button" class="btn btn-warning" (click)="crud_operation.is_visible=false">
+        Cancelar
+      </button>
+    </form>
+    <div class="loading text-center" *ngIf="loading">
+      <img src="../../assets/loader.gif" width="50px">
+    </div>
+    <table class="table table-bordered table-hover mt-4">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let olim of this.lista">
+          <td>
+            {{ olim.id }}
+          </td>
+          <td>
+            {{ olim.nombre }}
+          </td>
+          <td>
+            <a [routerLink]="['/admin/olimpiada/', olim.id]" class="btn btn-info">Ver</a>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+    
+
+  </div>
+</div>
+

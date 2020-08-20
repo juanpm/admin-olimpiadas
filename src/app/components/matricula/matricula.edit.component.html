@@ -1,0 +1,62 @@
+<div class="panel shadow mt-3" >
+  <div class="header">
+    <h2 class="title"><i class="fas fa-volleyball-ball"></i> REGISTRAR MATRICULA</h2>
+  </div>
+  <div class="inside">
+
+    <form (submit)="onSubmit()"
+      [formGroup]="newMatriculaForm">
+        <div class="form-group">
+          <label>
+            Carrera
+          </label>
+          <div  *ngIf="carreraObject.selected">
+          <input type="text"  class="form-control"  
+            value="{{ carreraObject.text }}" readonly 
+            *ngIf="carreraObject.selected">
+            
+          <button type="button" 
+            (click)="unselectCarrera()"
+            class="btn btn-info">Cambiar</button>
+          </div>
+          <div class="list-group" *ngIf="!carreraObject.selected">
+            <div class="list-group-item" 
+              *ngFor="let carrera of carreras">
+              <button class="btn btn-success" type="button" (click)="selectCarrera(carrera)">Seleccionar</button>
+              {{ carrera.nombre }}
+            </div>
+          </div>            
+        </div>
+
+        <div class="form-group">
+          <label>
+            Seccion
+          </label>
+          <div  *ngIf="seccionObject.selected">
+          <input type="text"  class="form-control" 
+            value="{{ seccionObject.text }}" readonly 
+            *ngIf="seccionObject.selected" >
+            
+          <button type="button" 
+            (click)="unselectSeccion()"
+            class="btn btn-info">Cambiar</button>
+          </div>
+          <div class="list-group" *ngIf="!seccionObject.selected">
+            <div class="list-group-item" 
+              *ngFor="let seccion of secciones">
+              <button class="btn btn-success" (click)="selectSeccion(seccion)" type="button">Seleccionar</button>
+              {{ seccion.nombre }}    
+            </div>
+          </div>            
+        </div>
+      
+        <button type="submit" class="btn btn-primary mr-2">
+          Actualizar
+        </button>
+        <button type="button" class="btn btn-warning mr-2" [routerLink]="['/admin/matricula', this.id]">
+          Cancelar
+        </button>
+        <button (click)="delete()" class="btn btn-danger" type="button">Eliminar</button>
+    </form>
+  </div>
+</div>

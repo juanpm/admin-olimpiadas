@@ -1,0 +1,13 @@
+.card-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+button {
+    background: red;
+}
+
+img{
+    width: 50px;
+}

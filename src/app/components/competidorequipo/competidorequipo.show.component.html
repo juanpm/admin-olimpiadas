@@ -1,0 +1,23 @@
+<div class="panel shadow mt-3" >
+  <div class="loading text-center" *ngIf="loading">
+    <img src="../../assets/loader.gif" width="50px">
+  </div>  
+    <div class="header">
+      <h2 class="title"><i class="fas fa-volleyball-ball"></i> Nombre: {{ compe.persona_nombrecompleto }}</h2>
+    </div>
+    <div class="inside">
+      <div class="list-group">
+        <div class="list-group-item">
+          <h5>Carrera: </h5> {{ compe.equipo_nombre }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-10">
+          <a class="btn btn-success mt-2 mr-5" [routerLink]="['/admin/competidorequipo', compe.id, 'edit']">Editar</a>
+        </div>
+        <div class="form-group col-md-2">
+          <button class="btn btn-info mt-2" [routerLink]="['/admin/competidorequipo']">Regresar</button>
+        </div>
+      </div> 
+    </div>
+  </div>

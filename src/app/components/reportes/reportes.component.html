@@ -1,0 +1,47 @@
+<div class="row ">
+  <div class="col-md-2 printable">
+    <img width="100" src="assets/logo reporte.png">
+  </div>
+  <div class="col-md-8 printable text-center mt-3">
+    <h1>Reporte de Ganadores</h1>
+  </div>
+  <div class="col-md-2 printable mt-3">
+    <img width="120" src="assets/instituto-continental.png">
+  </div>
+</div>
+
+<div class="mb-3 mt-3">
+  <button onclick="window.print();"
+    class="no-printable btn btn-secondary">Imprimir</button>
+</div>
+<form class="no-printable mb-2"[formGroup]="this.formSearch" (ngSubmit)="onSubmit()">
+  <select formControlName="disciplina"
+      class="form-control" id="disciplina"  style="display:inline-block; width: 80%;"> 
+      <option [ngValue]="dis" *ngFor="let dis of disc"> {{dis.nombre}} </option>
+  </select>
+
+  <button class="btn btn-success carga" type="submit" style="margin-left:10px"> Cargar </button>
+</form>
+<div class="loading text-center" *ngIf="report">
+  <!---<img src="../../assets/loader.gif" width="50px">--->
+  <div class="spinner-border text-warning m-2" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <h4>Espere ....</h4>
+</div> 
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Disciplina</th>
+      <th>Ganador</th>
+      <th>fase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let des of list">
+      <td>{{ des.disciplina.nombre }}</td>
+      <td>{{ des.ganador.nombre }}</td>
+      <td>{{ des.fase }}</td>
+    </tr>
+  </tbody>
+</table>

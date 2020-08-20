@@ -1,0 +1,133 @@
+<div class="panel shadow mt-3">
+  <div class="header">
+      <h2 class="title"><i class="fas fa-book"></i> EDITAR DESAFIOS</h2>
+  </div>
+  
+  <div class="inside">
+      <form (submit)="onSubmit()"
+      [formGroup]="newDesafioForm">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-10">
+              <label for="inputDesafio" class=" col-form-label" style="font-size: 20px; font-weight: bold;">Fase</label>
+              <input type="number" class="form-control " id="inputDesafio" formControlName="fase">
+            </div>
+            <div class="col-2">
+                <fieldset>
+                  <legend>Estado:</legend>
+                  <div>
+                    <input class="m-2" type="radio" id="play"  value="Jugando" formControlName="estado">
+                    <label for="Jugando">Jugando</label><br>
+                    <input class="m-2" type="radio" id="female"  value="Finalizado" formControlName="estado">
+                    <label for="Finalizado">Finalizado</label><br>
+                  </div>
+                </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label>
+              Disciplina
+            </label>
+            <div  *ngIf="disciplinaObject.selected">
+            <input type="text"  class="form-control"  
+              value="{{ disciplinaObject.text }}" readonly 
+              *ngIf="disciplinaObject.selected">
+              
+            <button type="button" 
+              (click)="unselectDisciplina()"
+              class="btn btn-info">Cambiar</button>
+            </div>
+            <div class="list-group" *ngIf="!disciplinaObject.selected">
+              <div class="list-group-item" 
+                *ngFor="let disciplina of disciplinas">
+                <button class="btn btn-success" type="button" (click)="selectDisciplina(disciplina)"
+                >Seleccionar</button>
+                {{ disciplina.nombre }}
+              </div>          
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="form-group col-md-6">
+              <label>
+                Invitado
+              </label>
+              <div  *ngIf="equipoObject.selected">
+              <input type="text"  class="form-control"  
+                value="{{ equipoObject.text }}" readonly 
+                *ngIf="equipoObject.selected">
+                
+              <button type="button" 
+                (click)="unselectEquipo()"
+                class="btn btn-info">Cambiar</button>
+              </div>
+              <div class="list-group" *ngIf="!equipoObject.selected">
+                <div class="list-group-item" 
+                  *ngFor="let equipo of equipos">
+                  <button class="btn btn-success" type="button" (click)="selectEquipo(equipo)"
+                  >Seleccionar</button>
+                  {{ equipo.nombre }}
+                </div>
+              </div>            
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputCarrera" class="col-form-label">Puntaje Invitado</label>
+              <!--<input type="number" value="1" class="form-control" id="inputCarrera" min="1" formControlName="invitado_puntaje">-->
+              <input  class="form-control"type="number" min="0" formControlName="invitado_puntaje">
+              <!-- <script>
+                  function maxlengthNumber (obj) {
+                      if (obj.value.length > obj.maxLength) {
+                          obj.value = obj.value.slice(0, obj.maxLength);
+                      }
+                  } 
+              </script>-->
+            </div>
+          </div>
+         
+          <div class="form-group row">
+            <div class="form-group col-md-6">
+              <label>
+                Retador
+              </label>
+              <div  *ngIf="equipoObjectr.selected">
+              <input type="text"  class="form-control"  
+                value="{{ equipoObjectr.text }}" readonly 
+                *ngIf="equipoObjectr.selected">
+                
+              <button type="button" 
+                (click)="unselectEquipor()"
+                class="btn btn-info">Cambiar</button>
+              </div>
+              <div class="list-group" *ngIf="!equipoObjectr.selected">
+                <div class="list-group-item"
+                  *ngFor="let equipor of equiposr">
+                  <button class="btn btn-success" type="button" (click)="selectEquipor(equipor)"
+                      >Seleccionar</button>
+                    {{ equipor.nombre }}
+                </div>
+              </div>            
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputCarrera" class="col-form-label">Puntaje retador</label>
+              <!--<p *ngIf ="{{disciplina.nombre}} == 5">Resgistrar solo 5 sets</p>-->
+              <input class="form-control"type="number" min="0" formControlName="retador_puntaje">
+              <!-- <script>
+                  function maxlengthNumber (obj) {
+                      if (obj.value.length > obj.maxLength) {
+                          obj.value = obj.value.slice(0, obj.maxLength);
+                      }
+                  }
+              </script> -->
+            </div>
+          </div>
+
+          <label for="inputDesafio" class="col-form-label">Fecha y Hora</label>
+          <input type="datetime" class="form-control " id="inputDesafio" formControlName="fecha">
+          
+          <button type="submit" class="btn btn-primary  mr-2">Actualizar</button>
+          <button class="btn btn-warning m-3" [routerLink]="['/admin/desafio', this.id]">Cancelar</button>
+          <button (click)="delete()" class="btn btn-danger" type="button">Eliminar</button>
+      </form>      
+  </div>
+</div> 
+ 

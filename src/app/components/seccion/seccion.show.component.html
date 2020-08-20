@@ -1,0 +1,21 @@
+<div class="panel shadow mt-3" >
+  <div class="header">
+    <h2 class="title"><i class="fas fa-volleyball-ball"></i> Seccion: {{ secc.nombre }}</h2>
+  </div>
+  <div class="inside">
+      <div class="list-group">
+          <div class="list-group-item">
+            <img src="https://us.123rf.com/450wm/iimages/iimages1502/iimages150201189/36770466-ilustraci%C3%B3n-de-un-aula-vac%C3%ADa.jpg?ver=6" alt="">
+          </div>
+        </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-10">
+          <a class="btn btn-success mt-2 mr-5" [routerLink]="['/admin/seccion', secc.id, 'edit']">Editar</a>
+        </div>
+        <div class="form-group col-md-2">
+          <button class="btn btn-info mt-2" [routerLink]="['/admin/seccion']">Regresar</button>
+        </div>
+      </div> 
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container mt-2">
+    <div class="row">
+      <div class="col-sm">
+        <div class="card">
+          <div class="card-header">
+              <img src="https://formulario.continental.edu.pe/form/imgcomsys/logouccinuevo.png" alt="">
+              Iniciar Sesion
+          </div>
+          <div class="card-body">
+            <form (submit)="login()" 
+              [formGroup]="formLogin">
+              <div class="form-group">
+                <label>Usuario</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-user"></i></div>
+                  </div>
+                  <input formControlName="usuario"  type="text" class="form-control" placeholder="john@gmail.com" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Contrasena</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-unlock-alt"></i></div>
+                  </div>
+                  <input formControlName="password"  type="password" class="form-control" placeholder="password" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                </div>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-secondary"
+                  type="submit">Iniciar sesion</button>
+              </div>
+            </form>              
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

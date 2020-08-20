@@ -1,0 +1,20 @@
+
+.printable {
+  display: none;
+  
+}
+@media print {
+    .no-printable {
+      display: none
+    }
+      .printable {
+        display: block!important;
+      }
+    .pi{
+      font-weight: bold;
+    }
+    .pr{
+      font-weight: bold;
+    }
+    
+  }

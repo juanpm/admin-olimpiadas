@@ -1,0 +1,25 @@
+<div class="panel shadow mt-3">
+  <div class="loading text-center" *ngIf="loading">
+    <img class="log" src="../../assets/loader.gif" width="50px">
+  </div> 
+    <div class="header">
+        <h2 class="title"><i class="fas fa-book"></i> Carrera: {{ car.nombre }}</h2>
+    </div>
+    <div class="inside">
+      <div class="list-group">
+        <div class="list-group-item">
+          <img  class="im" src="https://www.rhpaenews.com/wp-content/uploads/2017/08/carrera_profesional.jpg">
+        </div>
+      </div> 
+      <div class="form-row">
+        <div class="form-group col-md-10">
+          <a class="btn btn-success mt-2 mr-5" [routerLink]="['/admin/carrera', car.id, 'edit']">Editar</a>
+        </div>
+        <div class="form-group col-md-2">
+          <button class="btn btn-info mt-2" [routerLink]="['/admin/carrera']">Regresar</button>
+        </div>
+      </div> 
+        
+        
+    </div>
+  </div>

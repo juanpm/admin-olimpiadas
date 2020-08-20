@@ -1,0 +1,135 @@
+<div class="panel shadow mt-3" *ngIf="desafio">
+    <div class="header">
+        <h2 class="title"><i class="fas fa-book"></i> REGISTRO DE DESAFIOS</h2>
+    </div>
+    
+    <div class="inside">
+      <div class="btn btn-secondary mb-3" *ngIf="!crud_operation.is_visible" (click)="new()">Mostrar</div>
+        <form (submit)="crearDesafio()"
+        [formGroup]="newDesafioForm" *ngIf="crud_operation.is_visible">
+          <div class="form-group">
+            <label for="inputDesafio" class=" col-form-label">Fase</label>
+            <input type="text" class="form-control " id="inputDesafio" formControlName="fase">
+          </div>
+          <div class="form-group">
+              <label>
+                Disciplina
+              </label>
+              <div  *ngIf="disciplinaObject.selected">
+              <input type="text"  class="form-control"  
+                value="{{ disciplinaObject.text }}" readonly 
+                *ngIf="disciplinaObject.selected">
+                
+              <button type="button" 
+                (click)="unselectDisciplina()"
+                class="btn btn-info">Cambiar</button>
+              </div>
+              <div class="list-group" *ngIf="!disciplinaObject.selected">
+                <div class="list-group-item" 
+                  *ngFor="let disciplina of disciplinas">
+                  <button class="btn btn-success" type="button" (click)="selectDisciplina(disciplina)"
+                  >Seleccionar</button>
+                  {{ disciplina.nombre }}
+                </div>          
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <label>
+                  Invitado
+                </label>
+                <div  *ngIf="equipoObject.selected">
+                <input type="text"  class="form-control"  
+                  value="{{ equipoObject.text }}" readonly 
+                  *ngIf="equipoObject.selected">
+                  
+                <button type="button" 
+                  (click)="unselectEquipo()"
+                  class="btn btn-info">Cambiar</button>
+                </div>
+                <div class="list-group" *ngIf="!equipoObject.selected">
+                  <div class="list-group-item" 
+                    *ngFor="let equipo of equipos">
+                    <button class="btn btn-success" type="button" (click)="selectEquipo(equipo)"
+                    >Seleccionar</button>
+                    {{ equipo.nombre }}
+                  </div>
+                </div>            
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputCarrera" class="col-form-label">Puntaje Invitado</label>
+              <input type="number" value="1" class="form-control" id="inputCarrera" min="1" formControlName="invitado_puntaje">
+              </div>
+            </div>
+           
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <label>
+                  Retador
+                </label>
+                <div  *ngIf="equipoObjectr.selected">
+                <input type="text"  class="form-control"  
+                  value="{{ equipoObjectr.text }}" readonly 
+                  *ngIf="equipoObjectr.selected">
+                  
+                <button type="button" 
+                  (click)="unselectEquipor()"
+                  class="btn btn-info">Cambiar</button>
+                </div>
+                <div class="list-group" *ngIf="!equipoObjectr.selected">
+                  <div class="list-group-item"
+                    *ngFor="let equipor of equiposr">
+                    <button class="btn btn-success" type="button" (click)="selectEquipor(equipor)"
+                        >Seleccionar</button>
+                      {{ equipor.nombre }}
+                  </div>
+                </div>            
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputCarrera" class="col-form-label">Puntaje retador</label>
+                <input type="number" class="form-control" id="inputCarrera" formControlName="retador_puntaje">
+              </div>
+            </div>
+            
+            <label for="inputDesafio" class="col-form-label">Fecha y Hora</label>
+            <input type="datetime-local" class="form-control " id="inputDesafio" formControlName="fecha">
+
+            
+            <button type="submit" class="btn btn-primary  mr-2">Guardar</button>
+            <button class="btn btn-warning m-3" (click)="crud_operation.is_visible=false">Cancelar</button>
+             
+        </form> 
+        <div class="loading text-center" *ngIf="loading">
+          <img src="../../assets/loader.gif" width="50px">
+        </div>    
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">N</th>
+              <th scope="col">Disciplina</th>
+              <th scope="col">Invitado</th>
+              <th scope="col">Puntaje Invitado</th>
+              <th scope="col">Retador</th>
+              <th scope="col">Puntaje Retador</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let des of desafio | paginate: { itemsPerPage: 10, currentPage: pageActual }">
+              <td >{{des.id}}</td>
+              <td>{{des.disciplina.nombre}}</td>
+              <td>{{des.invitado.nombre}}</td>
+              <td>{{des.invitado_puntaje}}</td>
+              <td>{{des.retador.nombre}}</td>
+              <td>{{des.retador_puntaje}}</td>
+              <td>
+                <a [routerLink]="['/admin/desafio', des.id]" class="btn btn-info">Ver</a>
+              </td> 
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+    </div>
+</div> 
+
+   

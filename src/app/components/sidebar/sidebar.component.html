@@ -1,0 +1,59 @@
+<div class="sidebar shadow">
+    <div class="section-top">
+        <div class="logo">
+            <img src="assets/logo.png" class="img-fluid">
+        </div>
+
+        <div class="user">
+            <span class="subtitle">Hola:</span>
+            <div class="name">
+                {{ this.generals.user.nombres }}
+                <a (click)="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+            <div class="email">{{ this.generals.user.email }}</div>
+        </div>
+    </div>
+
+    <div class="main">
+        <ul>
+            <li>               
+                <a routerLink="/admin/olimpiada">
+                    <i class="fas fa-volleyball-ball"></i> Olimpiada</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/persona">
+                    <i class="fas fa-graduation-cap"></i> Persona</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/carrera">
+                    <i class="fas fa-book"></i> Carrera</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/seccion">
+                    <i class="fas fa-chalkboard-teacher"></i> Seccion</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/matricula">
+                    <i class="fas fa-user-plus"></i> Matricula</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/desafio">
+                    <i class="fas fa-flag-checkered"></i> Desafio</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/equipo">
+                    <i class="fas fa-users"></i> Equipo</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/disciplina">
+                    <i class="fas fa-running"></i> Disciplina</a>
+            </li>
+            <li>               
+                <a routerLink="/admin/competidorequipo">
+                    <i class="fas fa-people-arrows"></i> Asignar Equipo</a>
+            </li>
+        </ul>
+    </div>
+</div>

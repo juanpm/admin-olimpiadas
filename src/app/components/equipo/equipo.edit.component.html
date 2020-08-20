@@ -1,0 +1,46 @@
+<div class="panel shadow mt-3">
+    <div class="header">
+        <h2 class="title"><i class="fas fa-book"></i> EDITAR EQUIPO</h2>
+    </div>
+    
+    <div class="inside">
+        <form (submit)="onSubmit()"
+        [formGroup]="newEquipoForm">
+          <div class="form-group row">
+            <label for="inputEquipo" class="col-sm-2 col-form-label">Nombre</label>
+            <input type="text" class="form-control m-3" id="inputEquipo" formControlName="nombre">
+            <label for="inputEquipo" class="col-sm-2 col-form-label">Eslogan</label>
+            <input type="text" class="form-control m-3" id="inputEquipo" formControlName="descripcion">
+            <label for="inputEquipo" class="col-sm-2 col-form-label">Logo</label>
+            <input type="text" class="form-control m-3" id="inputEquipo" formControlName="image">
+            <div class="form-group col-md-4">
+              <label>
+                Disciplina
+              </label>
+              <div  *ngIf="disciplinaObject.selected">
+              <input type="text"  class="form-control"  
+                value="{{ disciplinaObject.text }}" readonly 
+                *ngIf="disciplinaObject.selected">
+                
+              <button type="button" 
+                (click)="unselectDisciplina()"
+                class="btn btn-info">Cambiar</button>
+              </div>
+              <div class="list-group" *ngIf="!disciplinaObject.selected">
+                <div class="list-group-item" 
+                  *ngFor="let disciplina of disciplinas">
+                  <button class="btn btn-success" type="button" (click)="selectDisciplina(disciplina)"
+                  >Seleccionar</button>
+                  {{ disciplina.nombre }}
+                  
+                </div>
+              </div>            
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+          <button class="btn btn-warning mr-2" [routerLink]="['/admin/equipo', this.id]">Cancelar</button>   
+          <button (click)="delete()" class="btn btn-danger" type="button">Eliminar</button>
+        </form>      
+    </div>
+</div> 
+   

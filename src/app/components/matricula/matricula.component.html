@@ -1,0 +1,120 @@
+<div class="panel shadow mt-3" >
+    <div class="header">
+      <h2 class="title"><i class="fas fa-volleyball-ball"></i> REGISTRAR MATRICULA</h2>
+    </div>
+    <div class="inside">
+      <div class="btn btn-secondary" *ngIf="!crud_operation.is_visible" (click)="new()">Mostrar</div>
+      <form (submit)="crearMatricula()"
+        [formGroup]="newMatriculaForm"
+        *ngIf="crud_operation.is_visible">
+          <div class="form-group">
+            <label>
+              Carrera
+            </label>
+            <div  *ngIf="carreraObject.selected">
+            <input type="text"  class="form-control"  
+              value="{{ carreraObject.text }}" readonly 
+              *ngIf="carreraObject.selected">
+              
+            <button type="button" 
+              (click)="unselectCarrera()"
+              class="btn btn-info">Cambiar</button>
+            </div>
+            <div class="list-group" *ngIf="!carreraObject.selected">
+              <div class="list-group-item" 
+                *ngFor="let carrera of carreras">
+                <button class="btn btn-success" type="button" (click)="selectCarrera(carrera)">Seleccionar</button>
+                {{ carrera.nombre }}
+              </div>
+            </div>            
+          </div>
+
+          <div class="form-group">
+            <label>
+              Seccion
+            </label>
+            <div  *ngIf="seccionObject.selected">
+            <input type="text"  class="form-control" 
+              value="{{ seccionObject.text }}" readonly 
+              *ngIf="seccionObject.selected" >
+              
+            <button type="button" 
+              (click)="unselectSeccion()"
+              class="btn btn-info">Cambiar</button>
+            </div>
+            <div class="list-group" *ngIf="!seccionObject.selected">
+              <div class="list-group-item" 
+                *ngFor="let seccion of secciones">
+                <button class="btn btn-success" (click)="selectSeccion(seccion)" type="button">Seleccionar</button>
+                {{ seccion.nombre }}    
+              </div>
+            </div>            
+          </div>
+
+          <div class="form-group">
+            <label>
+              Persona
+            </label>
+            <div  *ngIf="personaObject.selected">
+            <input type="text"  class="form-control" 
+              value="{{ personaObject.text }}" readonly 
+              *ngIf="personaObject.selected" >
+              
+            <button type="button" 
+              (click)="unselectPersona()"
+              class="btn btn-info">Cambiar</button>
+            </div>
+            <div class="list-group" *ngIf="!personaObject.selected">
+              <div class="list-group-item" 
+                *ngFor="let persona of personas">
+                <button class="btn btn-success" (click)="selectPersona(persona)" type="button">Seleccionar</button>
+                {{ persona.nombrecompleto }}
+              </div>
+            </div>            
+          </div>
+        
+        <button type="submit" class="btn btn-primary mr-2">
+          Registrar
+        </button>
+        <button type="button" class="btn btn-warning" (click)="crud_operation.is_visible=false">
+          Cancelar
+        </button>
+      </form>
+      <div class="loading text-center" *ngIf="loading">
+        <img src="../../assets/loader.gif" width="50px">
+      </div>
+      <table class="table table-bordered table-hover mt-4">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>Seccion</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let matri of lista | paginate: { itemsPerPage: 10, currentPage: pageActual }">
+            <td >
+              {{ matri.id }}
+            </td>
+            <td>
+              {{ matri.persona.nombrecompleto }}
+            </td>
+            <td>
+              {{ matri.carrera.nombre }}
+            </td>
+            <td>
+              {{ matri.seccionperiodo.nombre}}
+            </td>
+            <td>
+              <a [routerLink]="['/admin/matricula', matri.id]" class="btn btn-info">Ver</a>
+            </td>          
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+    </div>
+  </div>
+  
+  

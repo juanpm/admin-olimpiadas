@@ -1,0 +1,43 @@
+<div class="panel shadow mt-3">
+    <div class="header">
+        <h2 class="title"><i class="fas fa-book"></i> EDITAR DISCIPLINA</h2>
+    </div>
+    
+    <div class="inside">
+        <form (submit)="onSubmit()"
+        [formGroup]="newDisciplinaForm">
+          <div class="form-group row">
+            <label for="inputDisciplina" class="col-sm-2 col-form-label">Nombre</label>
+            <input type="text" class="form-control m-3" id="inputDisciplina" formControlName="nombre">
+            <label for="inputDisciplina" class="col-sm-2 col-form-label">Participantes</label>
+            <input type="number" class="form-control m-3" id="inputDisciplina" formControlName="participantes">
+            <div class="form-group col-md-4">
+              <label>
+                Olimpiada
+              </label>
+              <div  *ngIf="olimpiadaObject.selected">
+              <input type="text"  class="form-control"  
+                value="{{ olimpiadaObject.text }}" readonly 
+                *ngIf="olimpiadaObject.selected">
+                
+              <button type="button" 
+                (click)="unselectOlimpiada()"
+                class="btn btn-info">Cambiar</button>
+              </div>
+              <div class="list-group" *ngIf="!olimpiadaObject.selected">
+                <div class="list-group-item" 
+                  *ngFor="let olimpiada of olimpiadas">
+                  <button class="btn btn-success" type="button" (click)="selectOlimpiada(olimpiada)"
+                  >Seleccionar</button>
+                  {{ olimpiada.nombre }}  
+                </div>
+              </div>            
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+          <button class="btn btn-warning mr-2" [routerLink]="['/admin/disciplina', this.id]">Cancelar</button>   
+          <button (click)="delete()" class="btn btn-danger" type="button">Eliminar</button>
+        </form>      
+    </div>
+</div> 
+   

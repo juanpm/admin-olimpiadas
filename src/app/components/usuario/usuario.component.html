@@ -1,0 +1,52 @@
+<div class="panel shadow mt-3">
+      
+        <div class="header">
+          <h2 class="title">Usuarios</h2>
+        </div>
+        <div class="inside">
+          <div class="btn btn-secondary mb-3" *ngIf="!crud_operation.is_visible" (click)="new()">Mostrar</div>
+        <form (submit)="crearUsuario()"
+        [formGroup]="newUsuarioForm" *ngIf="crud_operation.is_visible">
+          <div class="form-group">
+            <label for="inputCarrera" class="col-form-label">Usuario</label>
+            <input type="text" class="form-control" id="inputCarrera" formControlName="nombrez">
+          </div>
+          <div class="form-group">
+            <label for="inputCarrera" class="col-form-label">Correo Electronico</label>
+            <input type="text" class="form-control" id="inputCarrera" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label for="inputCarrera" class="col-form-label">Contraseña</label>
+            <input type="password" class="form-control" id="inputCarrera" formControlName="password">
+          </div>
+            <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+            <button class="btn btn-warning" (click)="crud_operation.is_visible=false">Cancelar</button> 
+        </form> 
+        <div class="loading text-center" *ngIf="loading">
+          <img src="../../assets/loader.gif" width="50px">
+        </div>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let us of lista">
+                <td>
+                {{us.id}}
+              </td>
+              <td>
+                {{us.name}}
+              </td>
+              <td>
+                <a [routerLink]="['/admin/usuario', us.id]" class="btn btn-info m-2">Ver</a>
+                <a [routerLink]="['/admin/usuario', us.id, 'editar']" class="btn btn-warning m-2">Editar</a>
+              </td>      
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>

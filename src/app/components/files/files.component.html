@@ -1,0 +1,114 @@
+<div class="panel-shadow mt-3">
+<div class="header">
+  <h2 class="title"><i class="fas fa-file-csv"></i> Importacion de Asignar equipos</h2>
+</div>
+
+      <div class="inside">
+        <div class="row">
+          <div class="col-md-8">
+            <img src="https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/csv-3-256.png" alt="">
+            <input type="file" accept=".csv" (change)="handleFileSelect($event)">
+          </div>
+          <div class="col-md-4">
+            <div class="loading text-center" *ngIf="loading">
+              <!---<img src="../../assets/loader.gif" width="50px">--->
+              <div class="spinner-border text-info" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header">
+        <h2 class="title"><i class="fas fa-file-csv"></i> Importacion de Datos Desafios</h2>
+      </div>
+      
+      <div class="inside">
+        <div class="row">
+          <div class="col-md-8">
+            <img src="https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/csv-3-256.png" alt="">
+            <input type="file" accept=".csv" (change)="handleFileSelect2($event)">
+          </div>
+          <div class="col-md-4">
+            <div class="loading text-center" *ngIf="loading2">
+              <!---<img src="../../assets/loader.gif" width="50px">--->
+              <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+
+      <div class="header">
+        <h2 class="title"><i class="fas fa-file-csv"></i> Importacion de Datos Equipos </h2>
+      </div>
+            
+      <div class="inside">
+        <div class="row">
+          <div class="col-md-8">
+            <img src="https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/csv-3-256.png" alt="">
+            <input type="file" accept=".csv" (change)="handleFileSelectequipos($event)">
+          </div>
+          <div class="col-md-4">
+            <div class="loading text-center" *ngIf="loading3">
+              <!---<img src="../../assets/loader.gif" width="50px">--->
+              <div class="spinner-border text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div> 
+          </div>
+        </div>       
+      </div>
+
+      <div class="header">
+        <h2 class="title"><i class="fas fa-file-csv"></i> Importacion de Datos Personas </h2>
+      </div>
+            
+      <div class="inside">
+        <div class="row">
+          <div class="col-md-8">
+            <img src="https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/csv-3-256.png" alt="">
+            <input type="file" accept=".csv" (change)="handleFileSelectPersonas($event)">
+          </div>
+          <div class="col-md-4">
+            <div class="loading text-center" *ngIf="loading4">
+              <!---<img src="../../assets/loader.gif" width="50px">--->
+              <div class="spinner-border text-danger" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div> 
+          </div>
+        </div>
+       
+        
+      </div>
+      <div class="header">
+        <h2 class="title"><i class="fas fa-file-csv"></i> Importacion de Matriculas </h2>
+      </div>
+            
+      <div class="inside">
+        <div class="row">
+          <div class="col-md-8">
+            <img src="https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/csv-3-256.png" alt="">
+            <input type="file" accept=".csv" (change)="handleFileSelectMatricula($event)">
+          </div>
+          <div class="col-md-4">
+            <div class="loading text-center" *ngIf="loading5">
+              <!---<img src="../../assets/loader.gif" width="50px">--->
+              <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div> 
+          </div>
+        </div>
+       
+        
+      </div>
+
+</div>
+
+
+
+  

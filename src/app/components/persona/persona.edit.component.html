@@ -1,0 +1,94 @@
+<div class="panel shadow mt-3" >
+  <div class="header">
+    <h2 class="title"><i class="fas fa-volleyball-ball"></i> REGISTRO PERSONA</h2>
+  </div>
+  <div class="inside">
+
+    <form (submit)="onSubmit()"
+      [formGroup]="newPersonaForm">
+      <div class="form-group">
+        <label>
+          Codigo
+        </label>
+        <input type="text" 
+          formControlName="codigo"
+          class="form-control">
+      </div>
+      <div class="form-group">
+          <label>
+            Nombre
+          </label>
+          <input type="text" 
+            formControlName="nombrecompleto"
+            class="form-control">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>
+            Dni
+          </label>
+          <input type="text" 
+            formControlName="dni"
+            class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label>
+            Teléfono
+          </label>
+          <input type="text" 
+            formControlName="telefono"
+            class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>
+          Fecha
+        </label>
+        <input type="date" 
+          formControlName="fecha_nacimiento"
+          class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Foto
+        </label>
+        <input type="text" 
+          formControlName="foto"
+          class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>
+          Usuario
+        </label>
+        <div  *ngIf="usuarioObject.selected">
+        <input type="text"  class="form-control"  
+          value="{{ usuarioObject.text }}" readonly 
+          *ngIf="usuarioObject.selected">
+          
+        <button type="button" 
+          (click)="unselectUsuario()"
+          class="btn btn-info">Cambiar</button>
+        </div>
+        <div class="list-group" *ngIf="!usuarioObject.selected">
+          <div class="list-group-item" 
+            *ngFor="let usuario of usuarios">
+            <button class="btn btn-success" type="button" (click)="selectUsuario(usuario)"
+            >Seleccionar</button>
+            {{ usuario.name }}
+            
+          </div>
+        </div>            
+      </div>
+
+      <button type="submit" class="btn btn-primary mr-2">
+        Actualizar
+      </button>
+      <button type="button" class="btn btn-warning mr-2" [routerLink]="['/admin/persona', this.id]">
+        Cancelar
+      </button>
+      <button (click)="delete()" class="btn btn-danger" type="button">Eliminar</button>
+    </form>
+
+  </div>
+</div>
